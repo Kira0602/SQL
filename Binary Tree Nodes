@@ -1,0 +1,15 @@
+Select n, p =
+case
+when n in(
+    Select distinct p 
+    from BST
+    where p not in (
+        Select n 
+        from BST
+        where p is NULL)) 
+       then 'Inner'
+    when n in (Select n from BST where p is NULL) then 'Root'
+    else 'Leaf'
+end
+from BST
+order by n
